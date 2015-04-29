@@ -16,16 +16,8 @@ namespace SystemEkspercki.Controllers
         {
             UserPreferencesViewModel model;
             if (Session[UserPreferences] == null)
-            {
-
-                model = new UserPreferencesViewModel()
-                    {
-                        QuestionId = id,
-                        QuestionsIds = context.Questions.Select(x => x.Id).ToList(),
-                    
-
-                    };
-                Session[UserPreferences] = model;
+            {    
+                Session[UserPreferences] = GetDefaultModel(id);
             }
             else
             {
@@ -37,6 +29,11 @@ namespace SystemEkspercki.Controllers
 
         public ActionResult AnswerQuestion(UserAnswerViewModel viewModel)
         {
+            if (Session[UserPreferences] == null)
+            {
+                Session[UserPreferences] = GetDefaultModel();
+            }
+
             var model = (UserPreferencesViewModel)Session[UserPreferences];
             model.QuestionId++;
             if (model.Answers.ContainsKey(viewModel.QuestionId))
@@ -77,6 +74,7 @@ namespace SystemEkspercki.Controllers
                         var laptopAnswerValue = context.LaptopBoolValues.Where(x => x.BoolQuestionId == answer.Key).Where(x=>x.LaptopId==laptop.Id).Select(x => x.Value).FirstOrDefault();
                         if (Convert.ToInt32(laptopAnswerValue) != answer.Value)
                         {
+                            if (laptopsWithSummary.ContainsKey(laptop))
                             laptopsWithSummary.Remove(laptop);
                         }
                         
@@ -84,14 +82,15 @@ namespace SystemEkspercki.Controllers
                     else
                     {
                         var laptopAnswerValue = context.LaptopFuzzyValues.Where(x => x.FuzzyQuestionId == answer.Key).Where(x=>x.LaptopId==laptop.Id).Select(x => x.Value).FirstOrDefault();
+                        if (laptopsWithSummary.ContainsKey(laptop))
                         laptopsWithSummary[laptop] += answer.Value*laptopAnswerValue;
                     }
                     
                 }   
             }
 
-            
-            return View(laptopsWithSummary.OrderBy(x => x.Value).Select(x=>x.Key));
+            Session[UserPreferences] = null;
+            return View(laptopsWithSummary.OrderByDescending(x => x.Value).Select(x=>x.Key));
         }
         public ActionResult About()
         {
@@ -105,6 +104,18 @@ namespace SystemEkspercki.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        private UserPreferencesViewModel GetDefaultModel(int id =1)
+        {
+           var model = new UserPreferencesViewModel()
+            {
+                QuestionId = id,
+                QuestionsIds = context.Questions.Select(x => x.Id).ToList(),
+
+
+            };
+            return model;
         }
     }
 }

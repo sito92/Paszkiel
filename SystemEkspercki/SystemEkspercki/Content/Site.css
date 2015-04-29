@@ -12,6 +12,16 @@
     background-color: red;
     float: left;
 }
+#naviButton {
+    width: auto;
+    height: 50px;
+    background-color: #d3dce0;
+    border: 1px solid #787878;
+    font-size: 1.2em;
+  font-weight: 600;
+  color: #333;
+
+}
 html {
     background-color: #e2e2e2;
     margin: 0;

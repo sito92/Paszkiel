@@ -23,7 +23,7 @@ namespace SystemEkspercki.Models.ViewModel
 
         public UserAnswerViewModel UserAnswerViewModel
         {
-            get { return new UserAnswerViewModel() {QuestionId = QuestionId}; }
+            get { return new UserAnswerViewModel() {QuestionId = QuestionId,MaxQuestionId = MaxQuestionId}; }
         }
     }
 }

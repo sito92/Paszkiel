@@ -9,5 +9,7 @@ namespace SystemEkspercki.Models.ViewModel
     {
         public int QuestionId { get; set; }
         public int Answer { get; set; }
+        public int MaxQuestionId { get; set; }
+
     }
 }

@@ -4,7 +4,9 @@
     ViewBag.Title = "Home Page";
 }
 
+
 @Html.Partial("Question", @Model.UserAnswerViewModel)
+
 
 <div id="questionButtons">
     @foreach (var questionId in Model.QuestionsIds)
@@ -20,4 +22,5 @@
             </a>
         }
     }
+   
 </div>

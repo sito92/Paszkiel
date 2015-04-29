@@ -7,6 +7,31 @@
 
     @Html.Hidden("questionId", Model.QuestionId)
     @Html.Action("Show", "Question", new { id = @Model.QuestionId })
-    <input type="submit" value="Zapisz odpowiedź i przejdź dalej" />
+
+
+    if (Model.QuestionId != 1)
+    {
+        <a href="@Url.Action("Index", "Home", new {id = Model.QuestionId - 1})">
+            <div id="naviButton">Wcześniej</div>
+        </a>
+    }
+
+
+
+    if (Model.QuestionId != Model.MaxQuestionId)
+    {
+        <input type="submit" value="Zapisz odpowiedź i przejdź dalej" />
+    <a href="@Url.Action("Index", "Home", new {id = Model.QuestionId + 1})">
+        <div id="naviButton">Dalej</div>
+    </a>
+    }
+    else
+    {
+
+        <input type="submit" value="Zapisz"/>
+    <a href="@Url.Action("Summary", "Home")">
+        <div id="naviButton">Podsumuj</div>
+    </a>
+    }
 }
 

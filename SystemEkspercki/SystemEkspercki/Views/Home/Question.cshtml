@@ -1,0 +1,12 @@
+﻿@model SystemEkspercki.Models.ViewModel.UserAnswerViewModel
+           
+
+
+@using (Html.BeginForm("AnswerQuestion", "Home"))
+{
+
+    @Html.Hidden("questionId", Model.QuestionId)
+    @Html.Action("Show", "Question", new { id = @Model.QuestionId })
+    <input type="submit" value="Zapisz odpowiedź i przejdź dalej" />
+}
+

@@ -1,0 +1,21 @@
+﻿@model SystemEkspercki.Models.BoolQuestion
+
+<h2>ShowBoolQuestion</h2>
+
+<fieldset>
+    <legend>BoolQuestion</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+
+    <select name="answer">
+       
+            <option value="1">Tak</option>
+            <option value="0">Nie</option>
+    </select>
+</fieldset>

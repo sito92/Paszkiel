@@ -1,0 +1,23 @@
+﻿@model SystemEkspercki.Models.ViewModel.UserPreferencesViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@Html.Partial("Question", @Model.UserAnswerViewModel)
+
+<div id="questionButtons">
+    @foreach (var questionId in Model.QuestionsIds)
+    {
+        if (questionId == Model.QuestionId)
+        {
+            <div id="activeQuestionButton" class="@questionId"></div>
+        }
+        else
+        {
+            <a href="@Url.Action("Index", "Home", new {id = questionId})">
+                <div id="questionButton" class="@questionId"></div>
+            </a>
+        }
+    }
+</div>

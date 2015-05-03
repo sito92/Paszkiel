@@ -1,16 +1,12 @@
 ﻿@model SystemEkspercki.Models.FuzzyQuestion
-<h2>ShowFuzzyQuestion</h2>
 
 <fieldset>
     <legend>FuzzyQuestion</legend>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Name)
-    </div>
-    <div class="display-field">
+   
+    <div id="questionfield">
         @Html.DisplayFor(model => model.Name)
     </div>
-
 
     <select name="answer">
         @foreach (var answer in Model.Answers)

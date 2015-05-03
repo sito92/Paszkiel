@@ -4,31 +4,32 @@
     ViewBag.Title = "Home Page";
 }
 
+<div id="content">
+    @Html.Partial("Question", @Model.UserAnswerViewModel)
 
-@Html.Partial("Question", @Model.UserAnswerViewModel)
 
-
-<div id="questionButtons">
-    @foreach (var questionId in Model.QuestionsIds)
-    {
-        if (questionId == Model.QuestionId)
+    <div id="questionButtons">
+        @foreach (var questionId in Model.QuestionsIds)
         {
-            <div id="activeQuestionButton" class="@questionId"></div>
+            if (questionId == Model.QuestionId)
+            {
+                <div id="activeQuestionButton" class="@questionId"></div>
+            }
+            else
+            {
+                <a href="@Url.Action("Index", "Home", new {id = questionId})">
+                    @if (Model.Answers.ContainsKey(questionId))
+                    {
+                        <div id="answeredQuestionButton" class="@questionId"></div>
+                    }
+                    else
+                    {
+                        <div id="questionButton" class="@questionId"></div>
+                    }
+
+                </a>
+            }
         }
-        else
-        {
-            <a href="@Url.Action("Index", "Home", new {id = questionId})">
-                @if (Model.Answers.ContainsKey(questionId))
-                {
-                    <div id="answeredQuestionButton" class="@questionId"></div>
-                }
-                else
-                {
-                    <div id="questionButton" class="@questionId"></div>
-                }
-                
-            </a>
-        }
-    }
-   
+
+    </div>
 </div>

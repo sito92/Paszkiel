@@ -8,7 +8,7 @@
         @Html.DisplayFor(model => model.Name)
     </div>
 
-    <select name="answer">
+    <select name="answer" id="answers">
         @foreach (var answer in Model.Answers)
         {
             <option value="@answer.Weight">@answer.Name</option>

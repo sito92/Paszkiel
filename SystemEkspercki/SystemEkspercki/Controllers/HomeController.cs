@@ -124,5 +124,10 @@ namespace SystemEkspercki.Controllers
              };
             return model;
         }
+
+        public ActionResult List()
+        {
+            return View(context.Laptops);
+        }
     }
 }

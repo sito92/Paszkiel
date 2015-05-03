@@ -1,11 +1,10 @@
-﻿
-@model System.Collections.Generic.IEnumerable<SystemEkspercki.Models.Laptop>
+﻿@model System.Collections.Generic.IEnumerable<SystemEkspercki.Models.Laptop>
 
 @{
     ViewBag.Title = "Summary";
 }
 
-<h2>Podsumowanie:</h2>
+<h2>Nasze laptopy:</h2>
 <div class="CSSTableGenerator">
     <table>
         <tr>
@@ -49,7 +48,4 @@
         }
 
     </table>
-    </div>
-    <a href="@Url.Action("Index", "Home")">
-        <div id="button">Nowa ekspertyza</div>
-    </a>
+</div>

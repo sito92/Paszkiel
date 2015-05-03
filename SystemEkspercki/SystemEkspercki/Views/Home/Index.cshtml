@@ -18,7 +18,15 @@
         else
         {
             <a href="@Url.Action("Index", "Home", new {id = questionId})">
-                <div id="questionButton" class="@questionId"></div>
+                @if (Model.Answers.ContainsKey(questionId))
+                {
+                    <div id="answeredQuestionButton" class="@questionId"></div>
+                }
+                else
+                {
+                    <div id="questionButton" class="@questionId"></div>
+                }
+                
             </a>
         }
     }

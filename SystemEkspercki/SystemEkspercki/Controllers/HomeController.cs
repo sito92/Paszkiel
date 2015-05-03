@@ -14,10 +14,12 @@ namespace SystemEkspercki.Controllers
         private const string UserPreferences = "viewModel";
         public ActionResult Index(int id =1)
         {
-            UserPreferencesViewModel model;
+            UserPreferencesViewModel model=GetDefaultModel();
             if (Session[UserPreferences] == null)
-            {    
-                Session[UserPreferences] = GetDefaultModel(id);
+            {
+
+                Session[UserPreferences] = model;
+
             }
             else
             {
@@ -29,11 +31,6 @@ namespace SystemEkspercki.Controllers
 
         public ActionResult AnswerQuestion(UserAnswerViewModel viewModel)
         {
-            if (Session[UserPreferences] == null)
-            {
-                Session[UserPreferences] = GetDefaultModel();
-            }
-
             var model = (UserPreferencesViewModel)Session[UserPreferences];
             model.QuestionId++;
             if (model.Answers.ContainsKey(viewModel.QuestionId))
@@ -112,8 +109,6 @@ namespace SystemEkspercki.Controllers
             {
                 QuestionId = id,
                 QuestionsIds = context.Questions.Select(x => x.Id).ToList(),
-
-
             };
             return model;
         }

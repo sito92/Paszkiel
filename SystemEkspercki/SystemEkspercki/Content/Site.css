@@ -12,8 +12,16 @@
     background-color: red;
     float: left;
 }
+#answeredQuestionButton {
+        width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    background-color: yellow;
+    float: left;
+}
+
 #naviButton {
-    width: auto;
+    width: 200px;
     height: 50px;
     background-color: #d3dce0;
     border: 1px solid #787878;

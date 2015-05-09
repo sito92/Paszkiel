@@ -1,5 +1,5 @@
 ﻿
-@model System.Collections.Generic.IEnumerable<SystemEkspercki.Models.Laptop>
+@model SystemEkspercki.Models.SummaryViewModel
 
 @{
     ViewBag.Title = "Summary";
@@ -28,7 +28,7 @@ Najlepsze laptopy dla Ciebie:
             <th></th>
         </tr>
 
-        @foreach (var item in Model)
+        @foreach (var item in Model.OrderedLaptops)
         {
             <tr>
                 <td>
@@ -51,9 +51,12 @@ Najlepsze laptopy dla Ciebie:
 
     </table>
 </div>
-<a href="@Url.Action("Index", "Home")">
-    <div id="button">Pokaż więcej</div>
-</a>
+@if (Model.ActualLimit < Model.MaxLimit)
+{
+    <a href="@Url.Action("Summary", "Home", new {limit = Model.ActualLimit*2})">
+        <div id="button">Pokaż więcej</div>
+    </a>
+}
     <a href="@Url.Action("Index", "Home")">
         <div id="button">Nowa ekspertyza</div>
     </a>

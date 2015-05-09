@@ -14,6 +14,7 @@ namespace SystemEkspercki.Controllers
         private const string UserPreferences = "viewModel";
         public ActionResult Index(int id = 1)
         {
+            
             UserPreferencesViewModel model = GetDefaultModel();
             if (Session[UserPreferences] == null)
             {
@@ -52,7 +53,7 @@ namespace SystemEkspercki.Controllers
 
         }
 
-        public ActionResult Summary()
+        public ActionResult Summary(int limit = 3)
         {
             var model = (UserPreferencesViewModel)Session[UserPreferences];
             Dictionary<Laptop, int> laptopsWithSummary = new Dictionary<Laptop, int>();
@@ -98,8 +99,16 @@ namespace SystemEkspercki.Controllers
                 }
             }
 
-            Session[UserPreferences] = null;
-            return View(laptopsWithSummary.OrderByDescending(x => x.Value).Select(x => x.Key));
+            SummaryViewModel viewModel = new SummaryViewModel()
+            {
+                ActualLimit = limit,
+                MaxLimit = laptopsWithSummary.Count,
+                OrderedLaptops =
+                    laptopsWithSummary.OrderByDescending(x => x.Value).Take(limit).Select(x => x.Key).ToList()
+
+            };
+
+            return View(viewModel);
         }
         public ActionResult About()
         {
@@ -128,6 +137,12 @@ namespace SystemEkspercki.Controllers
         public ActionResult List()
         {
             return View(context.Laptops);
+        }
+
+        public ActionResult ResetAnswers()
+        {
+            Session[UserPreferences] = null;
+            return RedirectToAction("Index");
         }
     }
 }

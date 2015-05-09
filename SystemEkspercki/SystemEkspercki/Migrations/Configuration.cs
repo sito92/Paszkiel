@@ -35,19 +35,35 @@ namespace SystemEkspercki.Migrations
             {
                 new Answer() {Name = "Bardzo wa¿na", Weight = 10},
                 new Answer() {Name = "Wa¿na", Weight = 8},
-                new Answer() {Name = "Obojêtnie", Weight = 5},
-                new Answer() {Name = "Nie wa¿na", Weight = 3},
-                new Answer() {Name = "Kompletnie mnie nie interesuje", Weight = 1}
+                new Answer() {Name = "Przydatna", Weight = 5},
+                new Answer() {Name = "Ma³o przydatna", Weight = 3},
+                new Answer() {Name = "Niepotrzebna", Weight = 1}
             };
             answers.ForEach(x=>context.Answers.AddOrUpdate(x));
             context.SaveChanges();
             List<Question> questions = new List<Question>()
             {
-                new BoolQuestion() {Name = "Czy laptop ma mieæ 15'?"},
+                
                 new BoolQuestion() {Name = "Czy chcesz u¿ywaæ laptopa bez zasilacza?"},
+                new BoolQuestion() {Name = "Czy chcesz mieæ kolekcjê filmów lub gier na swoim komputerze?"},
+                new BoolQuestion() {Name = "Czy chcesz mieæ kolekcjê filmów lub gier na swoim komputerze?"},
+                new BoolQuestion() {Name = "Czy bêdziesz u¿ywa³ komputera w ekstremalnych warunkach?"},
+                new BoolQuestion() {Name = "Czy bêdziesz wykorzystywa³ komputer do d³ugotrwa³ego pisania?"},
+                new BoolQuestion() {Name = "Czy bêdziesz wykorzystywa³ komputer do tworzenia grafiki 2d lub obróbki foto?"},
+                new BoolQuestion() {Name = "Czy bêdziesz wykorzystywa³ komputer do tworzenia grafiki 3d?"},
+                new BoolQuestion() {Name = "Czy bêdziesz wykorzystywa³ komputer do obróbki materia³ów wideo?"},
+
+                new FuzzyQuestion() {Name = "Ile pieniêdzy chcesz przeznaczyæ na laptop?"},
                 new FuzzyQuestion() {Name = "Jak wa¿na dla Ciebie jest mobilnoœc?"},
-                new FuzzyQuestion() {Name = "Jak wa¿na jest dla Ciebie wydajnoœæ?"},
-                new FuzzyQuestion() {Name = "Jak wa¿na dla ciebie jest kultura pracy?"}
+                new FuzzyQuestion() {Name = "Jak wa¿na dla ciebie jest kultura pracy?"},
+                new FuzzyQuestion() {Name = "Jak wa¿na jest dla Ciebie jakoœæ wyœwietlanego obrazu?"},
+                new FuzzyQuestion() {Name = "Jak wa¿na jest dla Ciebie jakoœæ odtwarzanego dzwiêku?"},
+                new FuzzyQuestion() {Name = "Jak wa¿na jest dla Ciebie jakoœæ odtwarzanego dzwiêku?"},
+                new FuzzyQuestion() {Name = "Jak wa¿na dla ciebie jest kultura pracy?"}, 
+                new FuzzyQuestion() {Name = "Jaki system operacyjny ma mieæ laptop?"},
+                new FuzzyQuestion() {Name = "Jak du¿y ma byæ ekran?"},
+                new FuzzyQuestion() {Name = "Jak d³ug¹ gwarancjê ma mieæ komputer?"},
+                new FuzzyQuestion() {Name = "Jak d³ugo laptop ma dzia³aæ na bateri (z w³¹czonym wifi)?"}
             };
 
             
@@ -61,6 +77,7 @@ namespace SystemEkspercki.Migrations
             }
             questions.ForEach(x => context.Questions.AddOrUpdate(x));
             context.SaveChanges();
+
             List<Laptop> laptops = new List<Laptop>()
             {
                 new Laptop()

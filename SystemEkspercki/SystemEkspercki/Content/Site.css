@@ -3,7 +3,10 @@
   margin: 0 auto;
 }
 
-
+#bestLaptop {
+    border:2px solid #000000;
+    background-color: greenyellow;
+}
 .CSSTableGenerator {
 	margin:0px;padding:0px;
     margin-top: 20px;

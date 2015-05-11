@@ -6,6 +6,7 @@
 }
 
 <h2>Podsumowanie:</h2>
+
 Najlepsze laptopy dla Ciebie:
 <div class="CSSTableGenerator">
     <table>
@@ -30,6 +31,26 @@ Najlepsze laptopy dla Ciebie:
 
         @foreach (var item in Model.OrderedLaptops)
         {
+            if (Model.OrderedLaptops.IndexOf(item) == 0)
+            {
+                <tr>
+                    <td id="bestLaptop">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td id="bestLaptop">
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td id="bestLaptop">
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td id="bestLaptop">
+                        <a href="@Html.DisplayFor(modelItem => item.Name)">Zobacz pełną specyfikację</a>
+                    </td>
+                    <td id="bestLaptop">
+                        <a href="http://www.ceneo.pl/;szukaj-@Html.DisplayFor(modelItem => item.Name)">Wyszukaj w Ceneo</a>
+                    </td>
+                </tr>
+            }
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
@@ -57,6 +78,6 @@ Najlepsze laptopy dla Ciebie:
         <div id="button">Pokaż więcej</div>
     </a>
 }
-    <a href="@Url.Action("Index", "Home")">
+    <a href="@Url.Action("ResetAnswers", "Home")">
         <div id="button">Nowa ekspertyza</div>
     </a>

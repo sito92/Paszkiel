@@ -99,6 +99,11 @@ namespace SystemEkspercki.Controllers
                 }
             }
 
+
+            if (laptopsWithSummary == null || laptopsWithSummary.Count <=0 )
+            {
+                return RedirectToAction("SummaryFailed");
+            }
             SummaryViewModel viewModel = new SummaryViewModel()
             {
                 ActualLimit = limit,
@@ -143,6 +148,11 @@ namespace SystemEkspercki.Controllers
         {
             Session[UserPreferences] = null;
             return RedirectToAction("Index");
+        }
+
+        public ActionResult SummaryFailed()
+        {
+            return View();
         }
     }
 }

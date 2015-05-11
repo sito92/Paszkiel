@@ -37,45 +37,102 @@ namespace SystemEkspercki.Migrations
                 new Answer() {Name = "Wa¿na", Weight = 8},
                 new Answer() {Name = "Przydatna", Weight = 5},
                 new Answer() {Name = "Ma³o przydatna", Weight = 3},
-                new Answer() {Name = "Niepotrzebna", Weight = 1}
+                new Answer() {Name = "Nie wa¿na", Weight = 1},
+                new Answer() {Name = "11'", Weight = 3},
+                new Answer() {Name = "13'", Weight = 1},
+                new Answer() {Name = "15'", Weight = 1},
+                new Answer() {Name = "17'", Weight = 1},
+                new Answer() {Name = "Brak", Weight = 1},
+                new Answer() {Name = "Windows", Weight = 1},
+                new Answer() {Name = "Linux", Weight = 1},
+                new Answer() {Name = "1 rok", Weight = 1},
+                new Answer() {Name = "2 lata", Weight = 1},
+                new Answer() {Name = "Wiêcej ni¿ 2 lata", Weight = 1},
+                new Answer() {Name = "Przynajmniej 1 godzinê", Weight = 1},
+                new Answer() {Name = "Przynajmniej 2 godziny", Weight = 1},
+                new Answer() {Name = "Przynajmniej 3 godziny", Weight = 1},
+                new Answer() {Name = "Przynajmniej 4 godziny", Weight = 1}
             };
             answers.ForEach(x => context.Answers.AddOrUpdate(x));
             context.SaveChanges();
             List<Question> questions = new List<Question>()
             {
-                
+
                 new BoolQuestion() {Name = "Czy chcesz u¿ywaæ laptopa bez zasilacza?"},
                 new BoolQuestion() {Name = "Czy chcesz mieæ kolekcjê filmów lub gier na swoim komputerze?"},
                 new BoolQuestion() {Name = "Czy chcesz mieæ kolekcjê filmów lub gier na swoim komputerze?"},
                 new BoolQuestion() {Name = "Czy bêdziesz u¿ywa³ komputera w ekstremalnych warunkach?"},
                 new BoolQuestion() {Name = "Czy bêdziesz wykorzystywa³ komputer do d³ugotrwa³ego pisania?"},
-                new BoolQuestion() {Name = "Czy bêdziesz wykorzystywa³ komputer do tworzenia grafiki 2d lub obróbki foto?"},
+                new BoolQuestion()
+                {
+                    Name = "Czy bêdziesz wykorzystywa³ komputer do tworzenia grafiki 2d lub obróbki foto?"
+                },
                 new BoolQuestion() {Name = "Czy bêdziesz wykorzystywa³ komputer do tworzenia grafiki 3d?"},
                 new BoolQuestion() {Name = "Czy bêdziesz wykorzystywa³ komputer do obróbki materia³ów wideo?"},
 
-                new FuzzyQuestion() {Name = "Ile pieniêdzy chcesz przeznaczyæ na laptop?"},
-                new FuzzyQuestion() {Name = "Jak wa¿na dla Ciebie jest mobilnoœc?"},
-                new FuzzyQuestion() {Name = "Jak wa¿na dla ciebie jest kultura pracy?"},
-                new FuzzyQuestion() {Name = "Jak wa¿na jest dla Ciebie jakoœæ wyœwietlanego obrazu?"},
-                new FuzzyQuestion() {Name = "Jak wa¿na jest dla Ciebie jakoœæ odtwarzanego dzwiêku?"},
-                new FuzzyQuestion() {Name = "Jak wa¿na jest dla Ciebie jakoœæ odtwarzanego dzwiêku?"},
-                new FuzzyQuestion() {Name = "Jak wa¿na dla ciebie jest kultura pracy?"}, 
-                new FuzzyQuestion() {Name = "Jaki system operacyjny ma mieæ laptop?"},
-                new FuzzyQuestion() {Name = "Jak du¿y ma byæ ekran?"},
-                new FuzzyQuestion() {Name = "Jak d³ug¹ gwarancjê ma mieæ komputer?"},
-                new FuzzyQuestion() {Name = "Jak d³ugo laptop ma dzia³aæ na bateri (z w³¹czonym wifi)?"}
+                new FuzzyQuestion()
+                {
+                    Name = "Jak wa¿na dla Ciebie jest mobilnoœc?",
+                    Answers =
+                        answers.Where(
+                            x =>
+                                x.Name == "Bardzo wa¿na" || x.Name == "Wa¿na" || x.Name == "Przydatna" ||
+                                x.Name == "Ma³o przydatna" || x.Name == "Nie wa¿na").ToList()
+                },
+                new FuzzyQuestion() {Name = "Jak wa¿na dla ciebie jest kultura pracy?",
+                    Answers =
+                        answers.Where(
+                            x =>
+                                x.Name == "Bardzo wa¿na" || x.Name == "Wa¿na" || x.Name == "Przydatna" ||
+                                x.Name == "Ma³o przydatna" || x.Name == "Nie wa¿na").ToList()},
+                new FuzzyQuestion() {Name = "Jak wa¿na jest dla Ciebie jakoœæ wyœwietlanego obrazu?",
+                    Answers =
+                        answers.Where(
+                            x =>
+                                x.Name == "Bardzo wa¿na" || x.Name == "Wa¿na" || x.Name == "Przydatna" ||
+                                x.Name == "Ma³o przydatna" || x.Name == "Nie wa¿na").ToList()},
+                new FuzzyQuestion() {Name = "Jak wa¿na jest dla Ciebie jakoœæ odtwarzanego dzwiêku?",
+                    Answers =
+                        answers.Where(
+                            x =>
+                                x.Name == "Bardzo wa¿na" || x.Name == "Wa¿na" || x.Name == "Przydatna" ||
+                                x.Name == "Ma³o przydatna" || x.Name == "Nie wa¿na").ToList()},
+                new FuzzyQuestion() {Name = "Jak wa¿na jest dla Ciebie jakoœæ odtwarzanego dzwiêku?",
+                    Answers =
+                        answers.Where(
+                            x =>
+                                x.Name == "Bardzo wa¿na" || x.Name == "Wa¿na" || x.Name == "Przydatna" ||
+                                x.Name == "Ma³o przydatna" || x.Name == "Nie wa¿na").ToList()},
+                new FuzzyQuestion() {Name = "Jak wa¿na dla ciebie jest kultura pracy?",
+                    Answers =
+                        answers.Where(
+                            x =>
+                                x.Name == "Bardzo wa¿na" || x.Name == "Wa¿na" || x.Name == "Przydatna" ||
+                                x.Name == "Ma³o przydatna" || x.Name == "Nie wa¿na").ToList()},
+                new FuzzyQuestion() {Name = "Jaki system operacyjny ma mieæ laptop?",
+                    Answers =
+                        answers.Where(
+                            x =>
+                                x.Name == "Brak" || x.Name == "Windows" || x.Name == "Linux").ToList()},
+                new FuzzyQuestion() {Name = "Jak du¿y ma byæ ekran?",
+                    Answers =
+                        answers.Where(
+                            x =>
+                                x.Name == "11'" || x.Name == "13'" || x.Name == "15'" ||
+                                x.Name == "17'").ToList()},
+                new FuzzyQuestion() {Name = "Jak d³ug¹ gwarancjê ma mieæ komputer?",
+                    Answers =
+                        answers.Where(
+                            x =>
+                                x.Name == "1 rok" || x.Name == "2 lata" || x.Name == "Wiêcej ni¿ 2 lata").ToList()},
+                new FuzzyQuestion() {Name = "Jak d³ugo laptop ma dzia³aæ na bateri (z w³¹czonym wifi)?",
+                    Answers =
+                        answers.Where(
+                            x =>
+                                x.Name == "Przynajmniej 2 godziny" || x.Name == "Przynajmniej 3 godziny" ||
+                                x.Name == "Przynajmniej 4 godziny" || x.Name == "Przynajmniej 5 godzin").ToList()}
             };
-
-
-
-
-            var fuzzyQuestions = questions.OfType<FuzzyQuestion>();
-            foreach (var fQ in fuzzyQuestions)
-            {
-                fQ.Answers = new List<Answer>();
-                fQ.Answers.AddRange(answers);
-            }
-            questions.ForEach(x => context.Questions.AddOrUpdate(x));
+            questions.ForEach(x=>context.Questions.AddOrUpdate(x));
             context.SaveChanges();
 
             List<Laptop> laptops = new List<Laptop>()
@@ -318,41 +375,25 @@ Ekran dotykowy: nie"
             context.SaveChanges();
 
 
-            List<LaptopBoolValue> laptopBoolValues = new List<LaptopBoolValue>()
+            List<LaptopBoolValue> laptopBoolValues = new List<LaptopBoolValue>();
+            List<LaptopFuzzyValue> laptopFuzzyValues = new List<LaptopFuzzyValue>();
+
+            Random rand = new Random(DateTime.Now.Millisecond);
+            foreach (var laptop in laptops)
             {
-                new LaptopBoolValue() {BoolQuestionId = 4, LaptopId = 1, Value = true},
-                new LaptopBoolValue() {BoolQuestionId = 5, LaptopId = 1, Value = false},
+                laptopFuzzyValues.AddRange(questions.OfType<FuzzyQuestion>().Select(question => new LaptopFuzzyValue() {FuzzyQuestionId = question.Id, LaptopId = laptop.Id, Value = rand.Next(1, 10)}));
+            }
 
-                new LaptopBoolValue() {BoolQuestionId = 4, LaptopId = 2, Value = true},
-                new LaptopBoolValue() {BoolQuestionId = 5, LaptopId = 2, Value = true},
 
-                new LaptopBoolValue() {BoolQuestionId = 4, LaptopId = 3, Value = false},
-                new LaptopBoolValue() {BoolQuestionId = 5, LaptopId = 3, Value = false},
-
-                new LaptopBoolValue() {BoolQuestionId = 4, LaptopId = 4, Value = false},
-                new LaptopBoolValue() {BoolQuestionId = 5, LaptopId = 4, Value = true},
-            };
+            foreach (var laptop in laptops)
+            {
+                laptopBoolValues.AddRange(questions.OfType<BoolQuestion>().Select(question => new LaptopBoolValue() {BoolQuestionId = question.Id, LaptopId = laptop.Id, Value = rand.Next(1, 10)%2 == 0}));
+            }
             laptopBoolValues.ForEach(x => context.LaptopBoolValues.AddOrUpdate(x));
             context.SaveChanges();
 
-            List<LaptopFuzzyValue> laptopFuzzyValues = new List<LaptopFuzzyValue>()
-            {
-                new LaptopFuzzyValue() {FuzzyQuestionId = 1, LaptopId = 1, Value = 5},
-                new LaptopFuzzyValue() {FuzzyQuestionId = 2, LaptopId = 1, Value = 9},
-                new LaptopFuzzyValue() {FuzzyQuestionId = 3, LaptopId = 1, Value = 4},
-
-                new LaptopFuzzyValue() {FuzzyQuestionId = 1, LaptopId = 2, Value = 9},
-                new LaptopFuzzyValue() {FuzzyQuestionId = 2, LaptopId = 2, Value = 6},
-                new LaptopFuzzyValue() {FuzzyQuestionId = 3, LaptopId = 2, Value = 7},
-
-                new LaptopFuzzyValue() {FuzzyQuestionId = 1, LaptopId = 3, Value = 7},
-                new LaptopFuzzyValue() {FuzzyQuestionId = 2, LaptopId = 3, Value = 5},
-                new LaptopFuzzyValue() {FuzzyQuestionId = 3, LaptopId = 3, Value = 9},
-
-                new LaptopFuzzyValue() {FuzzyQuestionId = 1, LaptopId = 4, Value = 9},
-                new LaptopFuzzyValue() {FuzzyQuestionId = 2, LaptopId = 4, Value = 8},
-                new LaptopFuzzyValue() {FuzzyQuestionId = 3, LaptopId = 4, Value = 3},
-            };
+           
+          
 
             laptopFuzzyValues.ForEach(x => context.LaptopFuzzyValues.AddOrUpdate(x));
             context.SaveChanges();
